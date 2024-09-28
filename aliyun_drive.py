@@ -89,7 +89,7 @@ if __name__ == '__main__':
     # 从环境变量中获取ALI_REFRESH_TOKEN
     env = os.environ
     Cookies = env.get('ALI_REFRESH_TOKEN')
-    pushplus_token = env.get('PUSHPLUS_TOKEN')
+    pushplus_token = env.get('PUSH_PLUS_TOKEN')
     if Cookies != None:
         aly = ALiYun(Cookies)
         sio = aly.SignIn()
