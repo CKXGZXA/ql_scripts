@@ -6,5 +6,7 @@ cron:0 0 3 * * *
 import os
 
 env = os.environ
-# 将JD_COOKIE的值输出到日志
-print(env.get('JD_COOKIE'))
+# 有多个名为JD_COOKIE的值, 全部输出
+for key, value in env.items():
+    if key == 'JD_COOKIE':
+        print(key, value)
