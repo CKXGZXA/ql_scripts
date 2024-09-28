@@ -12,8 +12,9 @@ from messagepush import message2pushplus
 class ALiYun:
     def __init__(self, cookie):
         self.sio = StringIO()
-        self.Cookies = cookie
-        self.cookie = ''
+        # self.Cookies = cookie
+        # self.cookie = ''
+        self.cookie = cookie
 
     def _get_access_token(self, token: str) -> "tuple[bool, str, str, str]":
         url = 'https://auth.aliyundrive.com/v2/account/token'
@@ -55,34 +56,35 @@ class ALiYun:
     def SignIn(self):
         print("【阿里云盘 日志】")
         self.sio.write("【阿里云盘】\n")
-        for cookie in self.Cookies:
-            cookie = cookie.get("user")
-            print(f"{cookie.get('name')} 开始签到...")
-            self.sio.write(f"{cookie.get('name')}: ")
-            self.cookie = cookie.get('cookie')
-            try:
-                flag, user_name, access_token, message = self._get_access_token(self.cookie)
+        # for cookie in self.Cookies:
+        # cookie = cookie.get("user")
+        # print(f"{cookie.get('name')} 开始签到...")
+        print(f"开始签到...")
+        # self.sio.write(f"{cookie.get('name')}: ")
+        # self.cookie = cookie.get('cookie')
+        try:
+            flag, user_name, access_token, message = self._get_access_token(self.cookie)
+            if not flag:
+                print('token 已失效, ' + message)
+                self.sio.write('token 已失效\n')
+            else:
+                flag, signin_count, message = self._check_in(access_token)
                 if not flag:
-                    print('token 已失效, ' + message)
-                    self.sio.write('token 已失效\n')
+                    print('签到失败, ' + message)
+                    self.sio.write('签到失败\n')
                 else:
-                    flag, signin_count, message = self._check_in(access_token)
+                    print(f'本月已签到{signin_count}次')
+                    self.sio.write(f'本月已签到{signin_count}次\n')
+                    flag, message = self._get_reward(access_token, signin_count)
                     if not flag:
-                        print('签到失败, ' + message)
-                        self.sio.write('签到失败\n')
+                        print('领取失败, ' + message)
                     else:
-                        print(f'本月已签到{signin_count}次')
-                        self.sio.write(f'本月已签到{signin_count}次\n')
-                        flag, message = self._get_reward(access_token, signin_count)
-                        if not flag:
-                            print('领取失败, ' + message)
-                        else:
-                            print('领取成功: ' + message)
-                            self.sio.write('领取成功: ' + message + '\n')
-            except:
-                print(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
-                if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
-                    self.sio.write('签到存在异常, 请自行查看签到日志\n')
+                        print('领取成功: ' + message)
+                        self.sio.write('领取成功: ' + message + '\n')
+        except:
+            print(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
+            if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                self.sio.write('签到存在异常, 请自行查看签到日志\n')
         return self.sio
 
 if __name__ == '__main__':
