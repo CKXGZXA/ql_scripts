@@ -91,8 +91,3 @@ def run_brush_step(min_steps=15000, max_steps=16000):
     """
     manager = BrushStepManager()
     return manager.run_and_push(min_steps, max_steps)
-
-
-if __name__ == "__main__":
-    # 主程序入口
-    run_brush_step()

@@ -216,10 +216,3 @@ def huamiBrushStep(user, password, step_min, step_max):
     :return: 刷步结果
     """
     return main(user, password, step_min, step_max)
-
-if __name__ == '__main__':
-    ##刷步数
-    # res = main("1348753791@qq.com", "ZQY176099325050.0", 15000, 21000)
-    res = main("2403616010@qq.com", "123456789k", 15000, 21000)
-    #推送消息
-    # pushMessage("pushplus的token", "刷步接口调用", res)
