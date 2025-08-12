@@ -46,7 +46,7 @@ class BrushStepManager:
         result = ""
         
         for account_name, account_info in self.accounts.items():
-            result += f"{account_name}:\n"
+            result += f"{account_name}:"
             
             while True:
                 try:
@@ -64,7 +64,7 @@ class BrushStepManager:
                     print(f"{account_name} 刷步失败，正在重试... 错误: {e}")
                     time.sleep(5)  # 等待5秒后重试
             
-            result += "\n"
+            result += "\n\n"
             
         return result
 
