@@ -7,7 +7,7 @@ new Env('阿里云盘');
 
 import requests, time, re, json, sys, traceback, os
 from io import StringIO
-from messagepush import message2pushplus
+from modules.messagepush import message2pushplus
 
 class ALiYun:
     def __init__(self, cookie):
