@@ -5,9 +5,14 @@ cron: 10 9 * * *
 new Env('阿里云盘');
 """
 
-import requests, time, re, json, sys, traceback, os
 from io import StringIO
-from modules.messagepush import message2pushplus
+
+import os
+import requests
+import traceback
+
+from modules.dep_messagepush import message2pushplus
+
 
 class ALiYun:
     def __init__(self, cookie):

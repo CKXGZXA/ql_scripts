@@ -1,7 +1,7 @@
 import os
 import time
-from modules.messagepush import message2pushplus
-from modules.huamimotion import huamiBrushStep
+from modules.dep_messagepush import message2pushplus
+from modules.dep_huamimotion import huamiBrushStep
 
 
 class BrushStepManager:

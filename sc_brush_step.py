@@ -13,7 +13,7 @@ import sys
 # 添加项目根目录到Python路径
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from modules.brush_step import BrushStepManager
+from modules.dep_brush_step import BrushStepManager
 
 def parse_step_range(step_range):
     """
@@ -38,7 +38,7 @@ def parse_step_range(step_range):
     return 15000, 16000
 
 if __name__ == "__main__":
-    print("开始执行华米运动刷步数任务...")
+    print("开始执行刷步数任务...")
     
     # 解析STEP环境变量
     step_env = os.environ.get('STEP')
