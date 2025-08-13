@@ -3,5 +3,5 @@
 青龙面板拉取脚本:
 
 ``` bash
-ql repo https://github.com/CKXGZXA/ql_scripts.git "" "message2push"
+ql repo https://github.com/CKXGZXA/ql_scripts.git "sc_" "" "dep_"
 ```
